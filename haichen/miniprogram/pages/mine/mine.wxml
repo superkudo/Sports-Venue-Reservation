@@ -1,0 +1,90 @@
+<!--index.wxml-->
+<view>
+   <image class="back" src="../../images/miniback.png"></image>
+</view>
+ <view class="mine-info" wx:if="{{show}}">
+    <view class="userinfo">
+      <button wx:if="{{!hasUserInfo && canIUse}}"  bindtap="getUserInfo" class="userAuthorize"> 用户授权 </button>
+      <block wx:else>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <view class="userinfo-nickname"><text>{{name}} </text><text wx:if="{{userInfo.gender==1}}">♂ </text><text wx:else>♀ </text></view>
+        <view class="userinfo-sex" style="display:none">
+          <view wx:if="{{userInfo.gender==1}}">♂ 男</view>
+          <view wx:else>♀ 女</view>
+          <view>{{userInfo.ages}}</view>
+        </view>
+        <view class="userinfo-sex" style="width: 200%;margin-left: -50%;">
+          <text>联系方式：</text><text>{{phone}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view wx:if="{{show}}" style="margin-top:240px">
+   
+    <view class="mainpro">
+      <wux-cell-group>
+            
+            <wux-cell catchtap="editInfo" title="" is-link><wux-icon color="#ffc325" type="md-person" size="18"/><text style="padding-left:10rpx">编辑基本信息</text></wux-cell>
+            <!-- <wux-cell catchtap="toReserved" title="" is-link><wux-icon color="#ffc325" type="md-checkmark-circle" size="18"/><text style="padding-left:10rpx">未开始</text></wux-cell>
+            -->
+            
+            
+            
+        </wux-cell-group>
+    </view>
+       <view class="mainpro">
+      <wux-cell-group>
+            
+            
+           
+            <!-- <wux-cell catchtap="toComplete" title="" is-link><wux-icon color="#ffc325" type="md-disc" size="18"/><text style="padding-left:10rpx">已结束</text></wux-cell>
+            <wux-cell catchtap="toEvaluated" title="" is-link><wux-icon color="#ffc325" type="md-chatbubbles" size="18"/><text style="padding-left:10rpx">待评价</text></wux-cell>-->
+            <wux-cell catchtap="toOrder" title="" is-link><wux-icon color="#ffc325" type="md-business" size="18"/><text style="padding-left:10rpx">我的预订</text></wux-cell>
+            
+            <wux-cell catchtap="toAdmin" title="" is-link><wux-icon color="#ffc325" type="md-appstore" size="18"/><text style="padding-left:10rpx">管理员</text></wux-cell>
+            <!-- <wux-cell catchtap="toService" title="" is-link><wux-icon color="#ffc325" type="md-headset" size="18"/><text style="padding-left:10rpx">联系客服</text></wux-cell> -->
+            
+        </wux-cell-group>
+    </view>
+        <view style="margin-bottom:30rpx"></view>
+    <view class="add-place-button" style="display:none">
+         <wux-button block type="positive" outline  catchtap="editInfo">编辑基本信息</wux-button>
+    </view>
+    <wux-card title="{{'地点：'+item.place_name}}" wx:for="{{appoint}}" wx:for-item="item" extra="修改预约时间>" data-item="{{item}}" catchtap="edit_appoint" wx:key="index">
+                <view slot="body">
+                  <view>时间：{{item.year+"-"+item.month+'-'+item.day+' '+item.time+' ~ '+item.next_time}}</view>
+                  <view>联系人：{{item.name}}</view>
+                  <view>联系方式：{{item.phone}}</view>
+                   <view>备注：{{item.comments===undefined?'无':item.comments}}</view>
+                   <view style="padding-top:2px">
+                      <view style="float:left;width:15%;line-height:24px">操作：</view>
+                      <view style="float:left;width:75%"><button type="warn" size="mini" data-id="{{item._id}}" data-index="{{index}}"  data-item="{{item}}" catchtap="deleteApp" style="font-size:12px">撤销</button></view>
+                   </view>
+                </view>
+               
+    </wux-card>
+     <view class="add-place-button" style="display:none">
+         <wux-button block type="light" catchtap="goBack">回到首页</wux-button>
+    </view>
+    <view class="add-place-button" style="display:none">
+         <wux-button block type="positive" outline  catchtap="toAdmin">商家入口</wux-button>
+    </view>
+    <view class="add-place-button" style="display:none">
+         <wux-button block type="positive" outline >注销</wux-button>
+    </view>
+  </view>
+  <view style="z-index:2000" wx:if="{{!show}}">
+      <view style="padding-top:100rpx;text-align:center;color:black;font-size:52rpx">
+        场地预约
+      </view>
+     <view style="padding-top:300rpx;width:200rpx;margin:auto">
+          <image src="../../images/weixicon.png" style="height:200rpx;width:200rpx;display:none"></image>
+     </view>
+     <view style="margin-top:50rpx;width:90%;margin-left:5%">
+     <wux-button block type="balanced" style="" data-type="client" openType="getUserInfo" bind:getuserinfo="toClient" >授权登录</wux-button>
+      <wux-button block type="light" open-type="getUserInfo" data-type="admin" bindgetuserinfo="toClient">管理员登录</wux-button>
+     </view>
+     <view class="ad">
+       
+      </view>
+  </view>

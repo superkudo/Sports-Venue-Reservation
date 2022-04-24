@@ -1,0 +1,38 @@
+<!--miniprogram/pages/index/edit-long/edit-long.wxml-->
+<wux-calendar id="wux-calendar" />
+<wux-dialog id="wux-dialog" />
+<wux-dialog id="wux-dialog--alert" />
+ <!-- <view class="edit-long" style="width:92%;margin:0 4%;" wx:for="{{oldappoint}}" wx:for-item="item" wx:key="index" data-item="{{item}}" title="" >
+      
+        <sing style="z-index:1000;" obj="{{item}}" page="admin" isShow="{{true}}" user="{{user}}"  bind:appoint="appoint"  />
+    </view> -->
+    
+ <wux-cell-group title="动态预约(自动过滤无效预约)">
+ 
+                        <wux-popup-select options="{{  places}}" value="{{place.place_name!=undefined?place.place_name:'请选择'}}"  bind:confirm="editPlace">
+                            <wux-cell title="选择场馆:" is-link extra="{{ place.place_name!=undefined?place.place_name:'请选择'}}"></wux-cell>
+                        </wux-popup-select>
+                      <wux-popup-select options="{{  memberOps}}" value="{{user.member[place._id]==undefined?'非会员':user.member[place._id]=='普通会员'?'普通会员':VIP}}" data-placeid="{{place._id}}" data-index="{{index}}" data-userid="{{user._id}}" bind:confirm="onmem">
+                            <wux-cell title="修改会员等级:" is-link extra="{{ user.member[place._id]==undefined?'非会员':user.member[place._id]=='普通会员'?'普通会员':'VIP' }}"></wux-cell>
+                        </wux-popup-select>
+ <!-- <wux-popup-select value="{{ children }}" options="{{ place.children }}" data-index="1" data-type="children" bind:confirm="onConfirm" >
+                <wux-cell title="子场地：" is-link extra="{{ children.value==''?'请选择':children.value }}"></wux-cell>
+            </wux-popup-select>
+           
+            <wux-cell title="选择日期：" extra="{{ checkBoxLabel }}" bind:click="openCalendar2"></wux-cell>
+            <wux-cell title="选择时间：" extra="{{ dateStr }}" bind:click="cellClick"></wux-cell>
+             <wux-popup-select value="{{ repeat }}" options="{{ repeatList }}" data-index="1" data-type="repeat" bind:confirm="onConfirm" >
+                <wux-cell title="重复：" is-link extra="{{ repeat==''?'请选择':repeat }}"></wux-cell>
+            </wux-popup-select>
+            <wux-cell wx:if="{{repeat!='无'}}" title="开始时间：" extra="{{ startDateLabel }}" bind:click="openCalendar3"></wux-cell>
+            <wux-cell wx:if="{{repeat!='无'}}" title="结束时间：" extra="{{ endDateLabel }}" bind:click="openCalendar4"></wux-cell> -->
+        </wux-cell-group>
+        <!-- <wux-row style="width:94%;margin:auto" gutter="16">
+            <wux-col span="6">
+                 <wux-button block type="energized" catchtap="submitform" >{{'提交'}}</wux-button>
+            </wux-col>
+            <wux-col span="6" >
+                 <wux-button block type="light" data-item="{{item}}" catchtap="reset">{{'重置'}}</wux-button>
+            </wux-col>
+        </wux-row> -->
+        <!-- <yycalendar show='{{isShow}}' style="z-index:1000" beginTime="08:00" endTime="22:00" timeGap="60" unreserveTime='{{[]}}'  bind:yybindchange="_yybindchange" role="admin"/> -->

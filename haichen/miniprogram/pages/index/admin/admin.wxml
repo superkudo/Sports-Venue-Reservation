@@ -1,0 +1,131 @@
+<!--index.wxml-->
+<wux-cascader visible="{{ casvisible }}" controlled value="{{ appform.casvalue }}" title="请选择场地/子场地" options="{{ treedata}}" bind:close="placeClose" bind:change="placeChange" />
+<!-- <view wx:if="{{current==='0'}}">
+
+<wux-cell-group title="预约管理">
+    <wux-cell title="场地选择：" extra="{{placetitle!=''?placetitle:'请选择'}}" bind:click="openplace"></wux-cell>
+    <wux-date-picker mode="date" value="{{ appform.currday }}" lang="{{ 'zh_CN' }}" data-index="2" data-mode="date" data-type="date"  bind:confirm="onConfirm">
+                <wux-cell title="日期筛选：" label="当前时间七天内的预约" is-link extra="{{ (datevalue==''?'请选择':datevalue) }}"></wux-cell>
+            </wux-date-picker>
+        </wux-cell-group>
+        <dateorder form="{{appform}}" openId="{{openId}}"/>
+</view> -->
+
+
+<view class="container" style="display:{{current==='0'?'flex':'none'}}">
+    <view class="page-body">
+       <wux-cell-group title="场地列表">
+            
+            <wux-cell class="cell" wx:for="{{places}}" wx:for-item="item" wx:key="index" data-exid="{{item._id}}" catchtap="appoint"  title="{{'场地：'+item.place_name}}" extra="编辑场地">
+                <view class="item">
+                    <text class="item-text">地点： </text>
+                    <text class="item-text">{{item.place_area}} </text>
+                    <checkbox value="{{item.place_open?'已开启':'已关闭'}}" class="check-tf" data-unit="{{item}}" data-index="{{index}}"  checked="{{item.place_open}}" catchtap="isCheck"></checkbox>
+                </view>
+                <view class="item">
+                    <text class="item-text">标价： </text>
+                    <text class="item-text" style="color:#5ac0ce;">{{item.place_price}}</text>
+                    <text class="item-text"> 元/小时</text>
+                </view>
+            </wux-cell>
+        
+        </wux-cell-group>
+    </view>
+    <!-- <view style="width:100%"><calendarMonth bindmydata="mydata"></calendarMonth> </view> -->
+   
+
+</view>
+<view class="container" style="display:{{current=='1'?'flex':'none'}}">
+    <view class="page-body">
+        <view class="search" style=" position:fixed;width:100%;z-index:1000"><wux-search-bar clear catchtap="goSearch" /></view>
+        <!-- <view style="margin-bottom:40px">
+           <wux-cell-group title="{{'场地：'+place.place_name}}" wx:for="{{places}}" wx:for-item="place" wx:key="uindex">
+                <wux-cell class="cell" wx:for="{{users[place._id]}}" wx:for-item="item" wx:key="index" >
+                    <view class="item">
+                        <text class="item-text">姓名： </text>
+                        <text class="item-text">{{item.name}} </text>
+                    </view>
+                     <view class="item">
+                        <text class="item-text">手机号： </text>
+                        <text class="item-text">{{item.phone}} </text>
+                    </view>
+                     <view class="item">
+                        <text class="item-text">级别： </text>
+                        <text class="item-text">{{item.member[place._id]}} </text>
+                    </view>
+                
+                </wux-cell>
+           </wux-cell-group>
+        </view> -->
+      <view style="margin-top:{{mTop}}px;margin-bottom:50px">
+      
+     
+        <wux-virtual-list
+            id="wux-virtual-list"
+            enablePageScroll
+            enableBackToTop	
+            height="{{ virtualHeight }}"
+            itemHeight="145"
+            itemBuffer="30"
+            disableScroll="{{ disableScroll }}"
+            bind:change="onChange"
+        >
+            <wux-virtual-item wx:for="{{ virtual.items }}" wx:key="item">
+               <wux-cell-group catchtap="userdetail" data-item="{{item}}">
+               <wux-cell>
+                
+                <wux-row>
+                <wux-col span="4">
+                  <view style="display:flex;justify-content: center; align-items: center;height: 110px;">
+                  <image src="{{item.avatarUrl?item.avatarUrl:'../../../images/icons/morentouxiang.png'}}" mode="widthFix" style="width:150rpx;height:150rpx; border-radius: 50%;" lazy-load="true"></image>
+                  </view>
+                   
+                </wux-col>
+                <wux-col span="8">
+                <view class="item">
+                        
+                        
+                        <text class="item-text">姓名： </text>
+                        <text class="item-text">{{item.name}}</text>
+                    </view>
+                    <view class="item">
+                        <text class="item-text">手机号： </text>
+                        <text class="item-text">{{item.phone}}</text>
+                    </view>
+                    
+                    <view class="item">
+                        <text class="item-text">水平： </text>
+                        <text class="item-text">{{item.level}}</text>
+                       
+                    </view>
+                    <view class="item">
+                        <text class="item-text">用户权限： </text>
+                        <text class="item-text">{{item.role=='common'?'普通用户':'管理员'}}</text>
+                       
+                    </view>
+                </wux-col>
+              </wux-row>
+              </wux-cell>
+        
+        </wux-cell-group>
+            </wux-virtual-item>
+        </wux-virtual-list>
+         </view>
+    </view>
+</view>
+ <view>
+        <wux-tabbar defaultCurrent="{{current}}" position="bottom" theme="energized" bindchange="onoff" safeArea>
+        <!-- <wux-tabbar-item key="0" title="预约管理">
+                <wux-icon wux-class="icon" type="md-grid" size="32" slot="icon-on" />
+                <wux-icon wux-class="icon" type="md-grid" size="32" slot="icon-off" />
+            </wux-tabbar-item> -->
+            <wux-tabbar-item key="0" title="场馆管理">
+                <wux-icon wux-class="icon" type="md-cube" size="32" slot="icon-on" />
+                <wux-icon wux-class="icon" type="md-cube" size="32" slot="icon-off" />
+            </wux-tabbar-item>
+            <wux-tabbar-item key="1" title="用户管理">
+                <wux-icon wux-class="icon" type="md-card" size="32" slot="icon-on" />
+                <wux-icon wux-class="icon" type="md-card" size="32" slot="icon-off" />
+            </wux-tabbar-item>
+        </wux-tabbar>
+    </view>

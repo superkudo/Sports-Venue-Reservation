@@ -1,0 +1,20 @@
+<!--components/place/place.wxml-->
+
+            <!-- <wux-cell class="cell" wx:for="{{places}}" wx:for-item="item" wx:key="index" data-exid="{{item._id}}" data-img="{{item.place_img_src}}" data-price="{{item.place_price}}" data-times="{{item.place_times==undefined?[]:item.place_times}}" catchtap="appoint" title="" extra="预约"> -->
+            <scroll-view  scroll-y> 
+    <view class="cell" wx:for="{{orders}}" wx:for-item="item" wx:key="index" data-item="{{item}}" catchtap="appoint" title="" >
+        <sing style="z-index:1000" obj="{{item}}" user="{{user}}" isShow="{{true}}"  wx:if="{{item.show=='block'?true:false}}" page="{{page}}" bind:open="open"  bind:appoint="appoint" />
+    </view>
+    </scroll-view>  
+    <view wx:if="{{showlength==0&&page=='hot'}}" style="width:70%;margin-left:15%;text-align:center;display: flex;flex-direction: column;justify-content: center;height:100%">
+        <view>
+        目前没有正在拼团的预约
+            <wux-button block type="energized" catchtap="toClient">
+                发起预约
+            </wux-button>
+        </view>
+        
+    </view>
+   
+        
+       

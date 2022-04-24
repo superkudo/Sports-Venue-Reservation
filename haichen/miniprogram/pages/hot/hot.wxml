@@ -1,0 +1,164 @@
+<!--miniprogram/pages/hot/hot.wxml-->
+<wux-spin nested size="large" tip="加载中" spinning="{{ spinning }}" >
+ <nav-bar role="{{role}}" mem="{{mem}}"></nav-bar>
+ <wux-dialog id="wux-dialog" />
+<wux-dialog id="wux-dialog--alert" />
+
+<wux-popup closable visible="{{ visible1 }}" wux-header-class="wux-popup-title" title="{{popup!=undefined?(popup.time.year+'.'+popup.time.month+'.'+popup.time.day+' '+popup.time.time+' ('+popup.order.children.value+')'):''}}"  bind:close="onClose1" bind:closed="onClosed1">
+     <view style="">
+      
+        <wux-row wux-class="row row-bottom" style="margin-top:10px"> 
+         <wux-col span="3" >
+           预约人
+         </wux-col>
+         <wux-col span="4" wux-class="col">
+           <view class="item" style="text-align:right" >
+             <view class="border-bottom">
+               <text class="item-text ">姓名:</text>
+               
+             </view>
+             <view class="border-bottom">
+               <text class="item-text ">手机号:</text>
+              
+             </view>
+             <view>
+               <text class="item-text">定价:</text>
+              
+             </view>
+ 
+           </view>
+         </wux-col>
+         <wux-col span="5" >
+           <view class="item" >
+             <view class="border-bottom">
+              
+               <text class="item-text">{{popup.order.name}}</text>
+             </view>
+             <view class="border-bottom">
+               
+               <text class="item-text">{{popup.order.phone}}</text>
+             </view>
+             <view>
+               
+               <text class="item-text">￥{{popup.order.peopleprice}}</text>
+             </view>
+ 
+           </view>
+         </wux-col>
+       </wux-row>
+       <!-- <wux-row wux-class="row row-bottom">
+         <wux-col span="3" >
+           订单
+         </wux-col>
+         <wux-col span="4" style="text-align:right" wux-class="col">
+          <view class="item">
+             <view class="border-bottom">
+               <text class="item-text">类型:</text>
+              
+             </view>
+             <view>
+               <text class="item-text">重复周期:</text>
+              
+             </view>
+          </view>
+         </wux-col>
+         <wux-col span="5" >
+          <view class="item">
+             <view class="border-bottom">
+              
+               <text class="item-text">{{popup.order.repeat!=undefined?popup.order.repeat!='无'?'长期':'单次':'单次'}}</text>
+             </view>
+             <view>
+              
+               <text class="item-text">{{popup.order.repeat!=undefined?popup.order.repeat:'无'}}</text>
+             </view>
+          </view>
+         </wux-col>
+       </wux-row> -->
+     </view>
+     <view wx:if="{{user.role=='admin'}}">
+      <wux-row wux-class="row row-bottom">
+        <wux-col span="3">
+          确认订单
+        </wux-col>
+        <wux-col span="9"  wux-class="col">
+          <view style="width:40%;margin:auto">
+            <wux-button block type="energized" data-order="{{popup.order}}" catchtap="review" size="small">订单有效</wux-button>
+          </view>
+        </wux-col>
+      </wux-row>
+      <wux-row wux-class="row row-bottom">
+        <wux-col span="3">
+          无效订单
+        </wux-col>
+        <wux-col span="9"  wux-class="col">
+          <view style="width:40%;margin:auto">
+            <wux-button block type="assertive" data-order="{{popup.order}}" catchtap="refuse" size="small">无效订单</wux-button>
+          </view>
+        </wux-col>
+      </wux-row>
+     </view>
+ </wux-popup>
+ 
+ <view>
+  
+  <view class="get-place" style="width:100%;margin-top:0">
+   
+    <view style="width:100%"><calendarMonth bindmydata="mydata"></calendarMonth> </view>
+    <!-- <view class="tips">您现在身份是【{{mem}}】可以提前{{day}}天预订</view> -->
+    <view style="width:100%;background:#feffff;display:inline-flex">
+    <view class="table" style="margin-left:5%">
+       
+
+        <view class="tr bg-w">
+            <view class="th">  </view>
+        </view>
+        <block wx:for="{{listData}}" wx:for-item="item" wx:key="index" >
+            <view class="tr" >
+                <view class="" style="min-width:64px;background:#feffff;line-height:1rem;transform: translateY(-16rpx);">{{item.time+' - '}}</view>
+            </view>
+        </block>
+        
+
+        </view>
+     <scroll-view class='wrapper' scroll-x="true">
+
+    
+    <view class="table" style="width:100%">
+       
+
+        <view class="tr bg-w">
+            
+            <view class="th" wx:for="{{place.children}}" wx:for-item="item" wx:key="index">{{item.title}}</view>
+        </view>
+        <block wx:for="{{listData}}" wx:for-item="item" wx:key="index" >
+            <view class="tr" >
+                <view class="{{item[c.prop].disabled?item[c.prop].label=='-'?'td bg-w':item[c.prop].label=='审核中'?'td bg-f':'td':'td bg-h'}}" data-item="{{item[c.prop]}}" data-children="{{c}}" catchtap="{{item[c.prop].disabled?item[c.prop].label=='-'?'appointorder':'open':''}}" wx:for="{{place.children}}" wx:for-item="c" wx:key="i">{{item[c.prop].disabled?item[c.prop].label!=='-'?item[c.prop].label=='审核中'?'预订中':'已预订（' + item[c.prop].label+'）' :'可预订':'不可预约'}}</view>
+                
+            </view>
+        </block>
+        
+
+        </view>
+        </scroll-view>
+    </view>
+
+  </view>
+
+  <view class="get-place" style="width:100%;margin-top:0">
+  
+  <!-- <wux-row wx:if="{{user.role=='common'||user.role==''}}">
+    <wux-col span="3">  <view class="tr" style="height:2rem"><view class="td" style="line-height:32px;width:70%">已被约</view> </view></wux-col>
+    <wux-col span="3">  <view class="tr" style="height:2rem"><view class="td bg-w" style="line-height:32px;width:70%">可预约</view></view> </wux-col>
+    <wux-col span="3">  <view class="tr" style="height:2rem"><view class="td bg-h" style="line-height:32px;width:70%">未开放</view></view> </wux-col>
+    <wux-col span="3">  <view class="tr" style="height:2rem"><view class="td bg-f" style="line-height:32px;width:70%">审核中</view></view> </wux-col>
+  </wux-row>
+  <wux-row wx:else>
+    <wux-col span="4">  <view class="tr" style="height:2rem"><view class="td" style="line-height:32px;width:70%">已被约</view> </view></wux-col>
+    <wux-col span="4">  <view class="tr" style="height:2rem"><view class="td bg-w" style="line-height:32px;width:70%">可预约</view></view> </wux-col>
+    <wux-col span="4">  <view class="tr" style="height:2rem"><view class="td bg-f" style="line-height:32px;width:70%">审核中</view></view> </wux-col>
+   
+  </wux-row> -->
+</view>
+</view>
+</wux-spin>

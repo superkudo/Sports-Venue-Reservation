@@ -1,0 +1,4 @@
+/* miniprogram/pages/index/handle-user/handle-user.wxss */
+.cell button::after{
+  border-bottom-width:0 ;
+}

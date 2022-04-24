@@ -1,0 +1,16 @@
+.edit-info .wux-cell{
+  margin-left: 20rpx;
+}
+.edit-info{
+  width: 80%;
+  margin:auto
+}
+.edit-info-button{
+  width: 80%;
+}
+
+.tips
+{
+  color: #666;
+  font-size: 12px
+}

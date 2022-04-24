@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="container">
+
+
+    <view class="add-place-button" style="padding-top:10px" wx:if="{{btnShow}}">
+         <wux-button block type="light" catchtap="goManage">场地管理</wux-button>
+    </view>
+    <view class="page-body">
+       <place style="z-index:1000" str="{{str}}" filter="{{filter}}" strtype="{{strtype}}" bind:appoint="appoint" />
+    </view>
+   
+
+
+</view>

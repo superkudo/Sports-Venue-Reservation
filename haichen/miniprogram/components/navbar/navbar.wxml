@@ -1,0 +1,32 @@
+   
+<wux-dialog id="wux-dialog" />
+<wux-dialog id="wux-dialog--alert" />
+<wux-popup visible="{{ visible }}" bind:close="onClose">
+        <wux-radio-group name="b" value="{{ role }}" title="请选择您的身份" bind:change="onChange">
+                <wux-radio title="普通用户"  value="用户" />
+                <wux-radio title="场地管理员"  value="管理" />
+            </wux-radio-group>
+</wux-popup>
+<view class='nav-wrap' style='height: {{height+titleHeight}}px;'>    
+    <!-- 导航栏 中间的标题 -->  
+ 
+    <view class='nav-title' style=''>
+    
+        <wux-row>
+            <wux-col span="3">
+            <!-- <view style="margin-top:{{((height*2+titleHeight)-menuHeight)/2}}px;margin-left:10%" bindtap="toggle">
+            <view class="search" style="height:{{menuHeight}}px;line-height: {{menuHeight}}px;width:{{menuWeight}}px;background:#ffe7a8;border-radius:{{menuHeight/2}}px;" ><wux-icon style="margin-left:10%;" wux-class='icon' size="24" type="md-repeat" /> <text style="float:right;margin-right:10%;font-size:14px">{{role}}</text></view>
+            </view> -->
+                
+            </wux-col>
+            <wux-col span="6" style="text-align:center;">
+                <view style="padding-top:{{((height*2+titleHeight)-22)/2}}px">{{navbarData.title}}</view>
+            </wux-col>
+            <wux-col span="3">
+                
+            </wux-col>
+        </wux-row>
+    </view>
+      <!-- 导航栏  左上角的返回按钮 和home按钮-->  
+    
+</view>

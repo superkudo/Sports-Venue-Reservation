@@ -1,0 +1,154 @@
+<!--pages/index/add-place/add-place.wxml-->
+<wux-form class="add-place" id="wux-form" bind:change="onChange">
+  <wux-cell-group title="名称">
+    <wux-cell hover-class="none"> 
+      <wux-field name="place_name" initialValue="{{obj.place_name}}">
+          <wux-input label="" />
+      </wux-field>
+    </wux-cell>
+  </wux-cell-group>
+   <wux-cell-group title="场地联系方式">
+    <wux-cell hover-class="none"> 
+      <wux-field name="place_phone" initialValue="{{obj.place_phone}}">
+          <wux-input label="" />
+      </wux-field>
+    </wux-cell>
+  </wux-cell-group>
+  <wux-cell-group title="地点">
+    <wux-cell hover-class="none"> 
+      <wux-field name="place_area" initialValue="{{obj.place_area}}">
+          <wux-input catchtap="chooseMap" placeholder="选择地图获取位置" label="" />
+      </wux-field> 
+    </wux-cell>
+  </wux-cell-group>
+  <wux-cell-group title="场地介绍">
+    <wux-cell hover-class="none"> 
+      <wux-field name="intro" initialValue="{{obj.intro}}">
+          <wux-textarea rows="3" label="" />
+      </wux-field> 
+    </wux-cell>
+  </wux-cell-group>
+   <wux-cell-group class="add-place-price" title="默认参考价（元/小时）">
+      <wux-cell hover-class="none">    
+        <wux-field name="place_price" initialValue="{{ obj.place_price }}">
+            <wux-input-number disabled="{{ false }}" />
+        </wux-field>     
+      </wux-cell>
+    </wux-cell-group>
+    <wux-cell-group class="add-place-price" title="会员参考价（元/小时）">
+      <wux-cell hover-class="none">    
+        <wux-field name="member_price" initialValue="{{ obj.member_price }}">
+            <wux-input-number disabled="{{ false }}" />
+        </wux-field>     
+      </wux-cell>
+    </wux-cell-group>
+    <wux-cell-group class="add-place-price" title="VIP参考价（元/小时）">
+      <wux-cell hover-class="none">    
+        <wux-field name="vip_price" initialValue="{{ obj.vip_price }}">
+            <wux-input-number disabled="{{ false }}" />
+        </wux-field>     
+      </wux-cell>
+    </wux-cell-group>
+    <wux-cell-group title="场地类别">
+          
+        <wux-field name="场地类别" initialValue="{{ type.value }}">
+            <wux-popup-select options="{{ types }}" bind:confirm="typeConfirm">
+                <wux-cell title="类别：" is-link extra="{{type.value!='8'?type.title:'网球'}}"></wux-cell>
+            </wux-popup-select>
+        </wux-field>    
+     
+    </wux-cell-group>
+    <view>
+       <view style="font-size:28rpx;color:rgba(0,0,0,0.45);padding:30rpx 30rpx 18rpx">设置子场地</view>
+    </view> 
+    <wux-cell-group title="" label="{{'次序'+(index+1)+''}}" wx:for="{{obj.children}}" wx:for-item="item" wx:key="index" wx:if="{{item.show}}">
+        <wux-cell hover-class="none"> 
+        <wux-field name="{{item.prop}}" initialValue="{{ item.value }}">
+            <wux-textarea rows="{{index==0?2:1}}" autoHeight placeholder="子场地名称" label="" /><wux-button class="" wx:if="{{index!=0}}" data-index="{{index}}" catchtap="delChildren" clear="true" style="float:right;margin-top:-20rpx;" type="light">×</wux-button>
+        </wux-field>
+        </wux-cell>
+    </wux-cell-group>
+    <view>
+        <wux-button block class="" catchtap="addChildren" type="energized">新增子场地</wux-button>
+    </view>
+    <view>
+       <view style="font-size:28rpx;color:rgba(0,0,0,0.45);padding:30rpx 30rpx 18rpx">设置特殊时间参考价</view>
+    </view> 
+    <wux-cell-group title="" label="{{'次序'+(index+1)+''}}" wx:for="{{obj.special}}" wx:for-item="item" wx:key="index" wx:if="{{item.show}}">
+        <wux-field name="{{item.prop1}}" initialValue="{{ item.weekday }}">
+            <wux-popup-select options="{{ weeks }}" multiple data-index="{{index}}" data-prop="{{'weekday'}}" bind:confirm="onConfirm" bind:valueChange="onValueChange">
+                <wux-cell title="周：" is-link extra="{{item.weekday.length!=0?item.weekday:'请选择'}}"></wux-cell>
+            </wux-popup-select>
+        </wux-field>
+         <wux-field name="{{item.prop2}}" initialValue="{{ item.daytime }}">
+            <wux-popup-select options="{{ times }}" multiple data-index="{{index}}" data-prop="{{'daytime'}}" bind:confirm="onConfirm" bind:valueChange="onValueChange">
+                <wux-cell title="时：" is-link extra="{{item.daytime.length!=0?item.daytime:'请选择'}}"></wux-cell>
+            </wux-popup-select>
+          </wux-field>
+          <wux-cell hover-class="none"> 
+            <wux-field name="{{item.prop3}}" data-index="{{index}}" initialValue="{{ item.price }}">
+                <wux-input-number style="float:left" disabled="{{ false }}"/>  <wux-button class="" data-index="{{index}}" catchtap="delTime" clear="true" style="float:right;margin-top:-20rpx;" type="light">×</wux-button>
+            </wux-field>  
+         </wux-cell>
+    </wux-cell-group>
+    <view>
+        <wux-button block class="" catchtap="addTime" type="energized">新增时间过滤器</wux-button>
+    </view>
+
+    <view>
+       <view style="font-size:28rpx;color:rgba(0,0,0,0.45);padding:30rpx 30rpx 18rpx">上传场地缩略图</view>
+    </view> 
+    <view wx-if="{{obj.place_img_src!==''&&obj.place_img_src!==undefined}}">
+      <image src="{{obj.place_img_src}}" style="width:100%;margin-top:20rpx"></image>
+    </view>
+    <view>
+      <wux-button block bindtap="addImg" class="addPng" data-type="place_img_src" type="energized">替换缩略图</wux-button>
+    </view>
+
+    <view>
+       <view style="font-size:28rpx;color:rgba(0,0,0,0.45);padding:30rpx 30rpx 18rpx">上传场地收款二维码（微信）</view>
+    </view> 
+    <view wx-if="{{obj.place_pay_src!==''&&obj.place_pay_src!==undefined}}">
+      <image src="{{obj.place_pay_src}}" style="width:100%;margin-top:20rpx"></image>
+    </view>
+    <view>
+      <wux-button block bindtap="addImg" class="addPng" data-type="place_pay_src" type="energized">更换收款二维码</wux-button>
+    </view>
+
+    <view>
+       <view style="font-size:28rpx;color:rgba(0,0,0,0.45);padding:30rpx 30rpx 18rpx">上传场地宣传照片</view>
+    </view> 
+    <view>
+      <wux-row>
+        <wux-col span="4" wx:for="{{obj.place_images}}" wx:for-item="item" wx:key="index">
+          <image src="{{item}}" style="width:80%;height:80px;margin:10% 10% 0 10%;"></image>
+        </wux-col>
+      </wux-row>
+    </view>
+    <view>
+      <wux-button block bindtap="addImages" class="addPng" type="energized">上传场地照片</wux-button>
+    </view>
+
+    <wux-cell-group title="设置用户预约限制（天）" >
+        
+          <wux-cell title="VIP:" hover-class="none"> 
+            <wux-field name="vip"  initialValue="{{ obj.member.vip }}" slot="footer">
+                <wux-input-number  disabled="{{ false }}"/>  
+            </wux-field>  
+         </wux-cell>
+         <wux-cell title="普通会员:" hover-class="none"> 
+            <wux-field name="commonvip"  initialValue="{{ obj.member.commonvip }}" slot="footer">
+                <wux-input-number  disabled="{{ false }}"/>  
+            </wux-field>  
+         </wux-cell>
+         <wux-cell title="非会员:" hover-class="none"> 
+            <wux-field name="novip"  initialValue="{{ obj.member.novip }}" slot="footer">
+                <wux-input-number  disabled="{{ false }}"/>  
+            </wux-field>  
+         </wux-cell>
+         
+    </wux-cell-group>
+    <view class="">
+         <wux-button block type="energized" catchtap="addPlace">编辑完成</wux-button>
+    </view>
+</wux-form>

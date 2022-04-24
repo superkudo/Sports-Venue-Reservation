@@ -1,0 +1,16 @@
+/* components/navbar/navbar.wxss */
+.nav-wrap{
+  background: #ffca2a;
+}
+.nav-title{
+  font-size: 1rem;
+  
+}
+.nav-wrap .search{
+  width: 50%;
+  border-radius: 12px;
+}
+
+.nav-wrap .icon{
+  margin-top:0.2rem
+}

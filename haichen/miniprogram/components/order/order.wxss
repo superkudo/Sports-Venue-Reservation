@@ -1,0 +1,8 @@
+/* components/place/place.wxss */
+.item{
+  color:#414141;
+  margin-bottom: 10rpx;
+}
+.item-text{
+  font-size: 32rpx;
+}

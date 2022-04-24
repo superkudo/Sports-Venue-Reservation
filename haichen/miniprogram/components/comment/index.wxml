@@ -1,0 +1,79 @@
+<!--components/comment/index.wxml-->
+ <view class='allMessage'>
+      <view class="title">
+        <text>全部评论</text>
+      </view>
+      <view class='tab-content'>
+        <view class='comment-list'>
+        <!-- 提交评论显示 -->
+          <!-- 读取数据显示全部评论 -->
+          <view class='comment-item' wx:for-item="item" wx:for="{{comments}}" wx:if="{{item.openPid=='pid'}}" wx:key="{{_id}}">
+            <view class='comment-person'>
+              <image class='comment-person-avatar' src="{{item.avatarUrl!=undefined?item.avatarUrl:'../../images/icons/morentouxiang.png'}}"></image>
+              <view class='comment-person-info ellipsis'>
+                <view class='comment-person-name ellipsis'>{{item.name}}</view>
+                <view class='comment-time ellipsis'>{{item.phone}}</view>
+              </view>
+              <view style="flex:2">
+              <view style="float:right">
+                <wux-button size="small" style="margin-right:3px" data-pid="{{item._id}}" wx:if="{{page=='order'&&arr==1}}" data-item="{{item}}" catchtap="foccom">回复</wux-button>
+                <wux-button size="small" type="assertive" catchtap="delcomm" data-item="{{item}}" wx:if="{{openid==item.user_open_id}}" style="">删除</wux-button>
+              </view>
+              
+              </view>
+            </view>
+            <view class='comment-text'>{{item.comment}}</view>
+            <wux-white-space size="small" /> 
+             
+                <view class='comment-item' style="width:80%;margin-left:17%" wx:for-item="piditem" wx:for="{{comments}}" wx:if="{{piditem.openPid==item._id}}" wx:key="{{_id}}">
+                  <view class='comment-person'>
+                    <image class='comment-person-avatar' src="{{piditem.avatarUrl!=undefined?piditem.avatarUrl:'../../images/icons/morentouxiang.png'}}"></image>
+                    <view class='comment-person-info ellipsis'>
+                      <view class='comment-person-name ellipsis'>{{piditem.name}}</view>
+                      <view class='comment-time ellipsis'>{{piditem.phone}}</view>
+                    </view>
+                    <view style="flex:2">
+                      <view style="float:right" >
+                        <wux-button type="assertive" size="small" catchtap="delcomm" data-item="{{piditem}}" wx:if="{{openid==piditem.user_open_id}}" style="margin-left:2%">删除</wux-button>
+                      </view>
+                    
+                    </view>
+                  </view>
+                  <view class='comment-text'>{{piditem.comment}}</view>
+                  <wux-white-space size="small" /> 
+                  
+                </view>
+          </view>
+    <view class="" wx:if="{{page=='order'&&arr==1}}">   
+  
+         <wux-row>
+            <wux-col span="9">
+              <view wx:if="{{pid!=='pid'}}"><text>回复：</text> <wux-tag controlled color="magenta">{{piditem.name}}</wux-tag></view>
+            </wux-col>
+            <wux-col span="3">
+              <wux-button catchtap="send" wx:if="{{isShow}}" style="float:right;margin-right:1%">{{pid!=="pid"?"回复":"发送"}}</wux-button>
+            </wux-col>
+          </wux-row>
+            
+       
+        
+        <wux-cell-group title="">
+          <wux-row>
+            <wux-col span="2">
+              <wux-avatar size="large" src="{{user.avatarUrl==undefined?'../../images/icons/morentouxiang.png':user.avatarUrl}}"  ></wux-avatar>
+            </wux-col>
+            <wux-col span="10">
+              <wux-cell hover-class="none">
+                 
+                  <wux-textarea placeholder="我来说两句" value="{{ comm }}" controlled bind:focus="focu" focus="{{isFoucs}}" bind:linechange="linechange" bind:blur="onBlur" bind:change="onChange" showConfirmBar="{{false}}" autoHeight/>
+              </wux-cell>
+            </wux-col>
+          </wux-row>
+            
+        </wux-cell-group>
+    
+</view>
+        </view>
+      </view>
+    </view>
+

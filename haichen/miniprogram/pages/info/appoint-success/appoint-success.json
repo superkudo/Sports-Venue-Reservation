@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "wux-button":"/components/button/index",
+    "wux-result": "/components/result/index",
+    "wux-image": "/components/image/index"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "wux-cell": "/components/cell/index",
+    "wux-cell-group":"/components/cell-group/index",
+    "wux-popup-select": "/components/popup-select/index",
+    "wux-button": "/components/button/index"
+  },
+  "navigationBarTitleText":"用户管理-场馆选择"
+}

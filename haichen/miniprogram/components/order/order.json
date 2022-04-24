@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wux-cell": "../cell/index",
+    "wux-cell-group":"../cell-group/index",
+    "wux-row": "../row/index",
+        "wux-col": "../col/index",
+        "wux-rater": "../rater/index",
+        "sing":"../singelorder/singelorder",
+        "wux-button":"../button/index"
+  }
+}

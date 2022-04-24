@@ -1,0 +1,13 @@
+<!--miniprogram/pages/index/index.wxml-->
+<view class="index">
+
+  <view class="but" style="padding-top:300rpx" wx:if="{{isShow}}">
+        <wux-button block type="energized" open-type="getUserInfo" bindgetuserinfo="toUser" >微信用户一键登录</wux-button>
+  </view>
+  <view class="but"  wx:if="{{!isShow}}">
+        <wux-button block type="energized" catchtap="toAdmin" >我是管理员</wux-button>
+  </view>
+  <view class="but"  wx:if="{{!isShow}}">
+        <wux-button block type="energized" catchtap="toClient" >我是客户</wux-button>
+  </view>
+</view>

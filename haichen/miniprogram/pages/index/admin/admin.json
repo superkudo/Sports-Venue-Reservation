@@ -1,0 +1,24 @@
+{
+  "usingComponents": {
+    "wux-cell": "/components/cell/index",
+    "wux-cell-group":"/components/cell-group/index",
+    "wux-icon": "/components/icon/index",
+    "wux-button": "/components/button/index",
+    "wux-checkbox-group": "/components/checkbox-group/index",
+    "wux-checkbox": "/components/checkbox/index",
+    "wux-badge": "/components/badge/index",
+    "wux-tabbar": "/components/tabbar/index",
+    "wux-tabbar-item": "/components/tabbar-item/index",
+    "wux-date-picker": "/components/date-picker/index",
+    "wux-search-bar": "/components/search-bar/index",
+    "wux-cascader": "/components/cascader/index",
+    "dateorder":"/components/dateorder/index",
+    "wux-virtual-list": "/components/virtual-list/index",
+    "wux-virtual-item": "/components/virtual-item/index",
+    "wux-row": "/components/row/index",
+    "wux-col": "/components/col/index",
+    "calendarMonth": "/components/calendarWeek/calendarWeek"
+  },
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText":"用户管理"
+}

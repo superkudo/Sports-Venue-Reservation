@@ -1,0 +1,13 @@
+<!--miniprogram/pages/mine/order/order.wxml-->
+<wux-filterbar items="{{ items }}" bind:change="onChange" />
+<wux-card title="{{'地点：'+item.obj.place_name}}" wx:for="{{appointList}}" wx:for-item="item"  data-item="{{item}}"  wx:key="index">
+                <view slot="body">
+                  <view>时间：{{item.appointments[0].year+"-"+item.appointments[0].month+'-'+item.appointments[0].day+' '+item.appointments[0].time+' ~ '+item.appointments[0].next_time}}</view>
+                  <view>联系人：{{item.name}}</view>
+                  <view>联系方式：{{item.phone}}</view>
+                  <view>状态：{{item.status}}</view>
+                   <view>备注：{{item.comments===undefined?'无':item.comments}}</view>
+                   
+                </view>
+               
+    </wux-card>

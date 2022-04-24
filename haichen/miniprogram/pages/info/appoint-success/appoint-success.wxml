@@ -1,0 +1,79 @@
+<!--miniprogram/pages/info/appoint-success/appoint-success.wxml-->
+<wux-result
+wx:if="{{ispay}}"
+    title="预约订单已提交成功"
+    label="请耐心等待管理员确认，也可以直接联系管理员：010-84530808"
+    buttons="{{ buttons2}}"
+    icon="{{icon}}"
+    extra="Copyright © 2020 场地预约"
+    fixed
+    bind:click="goBack"
+/>
+<!--<wux-result
+wx:else
+    title="审核中"
+    label="预约状态：审核中"
+    buttons="{{ buttons}}"
+    icon="{{icon}}"
+    extra="Copyright © 2020 场地预约"
+    fixed
+    bind:click="onClick"
+    extra="订单创建一小时后如果未审核通过将自动取消"
+/> -->
+<view wx-if="{{!ispay}}">
+<view wx-if="{{place_pay_src!==''&&place_pay_src!==undefined}}" style="margin-top:10%">
+     
+     <wux-image wux-class="image" shape="rounded" width="300px" height="300px" src="{{place_pay_src}}" />
+   </view>
+<view style="padding:60rpx 40rpx">
+<view style="text-align:center">
+    <!-- <view  class="title">{{status}}</view>
+        <view  class="desc">预约状态：{{status}}</view> -->
+        <view class="title">请您截屏当前页面到相册，再用微信扫一扫截图的支付场地费:{{price}}元</view>
+        <view  class="desc">场地管理员会在您提交订单后30分钟内主动联系您进行确认,通过后订单生效</view>
+        
+</view>
+
+<block wx:if="review=='unpaid'">
+    <wux-button type= 'light'
+          block
+          bind:click="subOrder"
+          > 
+        我已支付,提交管理员申请
+    </wux-button>
+</block>
+<block wx:for="{{ buttons }}" wx:for-item="button" wx:key="index">
+                <wux-button
+                    type="{{ button.type }}"
+                    clear="{{ button.clear }}"
+                    block="{{ button.block }}"
+                    full="{{ button.full }}"
+                    outline="{{ button.outline }}"
+                    size="{{ button.size }}"
+                    disabled="{{ button.disabled }}"
+                    loading="{{ button.loading }}"
+                    form-type="{{ button.formType }}"
+                    open-type="{{ button.openType }}"
+                    hover-stop-propagation="{{ button.hoverStopPropagation }}"
+                    hover-start-time="{{ button.hoverStartTime }}"
+                    hover-stay-time="{{ button.hoverStayTime }}"
+                    lang="{{ button.lang }}"
+                    bind:getuserinfo="bindgetuserinfo"
+                    session-from="{{ button.sessionFrom }}"
+                    send-message-title="{{ button.sendMessageTitle }}"
+                    send-message-path="{{ button.sendMessagePath }}"
+                    send-message-img="{{ button.sendMessageImg }}"
+                    show-message-card="{{ button.showMessageCard }}"
+                    bind:contact="bindcontact"
+                    bind:getphonenumber="bindgetphonenumber"
+                    app-parameter="{{ button.appParameter }}"
+                    binderror="onError"
+                    bindopensetting="bindopensetting"
+                    data-index="{{ index }}"
+                    bind:click="onClick"
+                >
+                    {{ button.text }}
+                </wux-button>
+            </block>
+        </view>
+    </view>

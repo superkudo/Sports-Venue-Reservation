@@ -1,0 +1,34 @@
+<!--components/place/place.wxml-->
+<wux-cell-group title="">
+            <!-- <wux-cell class="cell" wx:for="{{places}}" wx:for-item="item" wx:key="index" data-exid="{{item._id}}" data-img="{{item.place_img_src}}" data-price="{{item.place_price}}" data-times="{{item.place_times==undefined?[]:item.place_times}}" catchtap="appoint" title="" extra="预约"> -->
+            <wux-cell wux-class="cell" wx:for="{{places}}" wx:for-item="item" wx:key="index" data-item="{{item}}" catchtap="appoint" title="" extra="">
+              <wux-row>
+                <wux-col span="4">
+                  <view style="transform: translate(0, 25%);">
+                  <image src="{{item.place_img_src==''?'../../images/icons/changdi.png':item.place_img_src}}" mode="widthFix" style="width:80%;max-height:80px;"></image>
+                  </view>
+                   
+                </wux-col>
+                <wux-col span="8">
+                <view class="item">
+                        <text  style="font-size:36rpx;font-weight:bold">{{item.place_name}}</text>
+                    </view>
+                    <view class="item">
+                        <text class="item-text">{{item.place_area}}{{item.km!=undefined?("(距"+item.km+"公里)"):""}}</text>
+                    </view>
+                    <view class="item">
+                        <text class="item-text">参考价： </text>
+                        <text class="item-text" style="color:#5ac0ce;">{{item.place_price}}</text>
+                        <text class="item-text"> 元/小时</text>
+                    </view>
+                    <view class="item">
+                        <text class="item-text">推荐指数： </text>
+                        <text class="item-text"></text>
+                        <wux-rater slot="footer" controlled value="{{ item.score==undefined?0:item.score }}" style="" fontSize="20" />
+                    </view>
+                </wux-col>
+              </wux-row>
+                
+            </wux-cell>
+        
+        </wux-cell-group>

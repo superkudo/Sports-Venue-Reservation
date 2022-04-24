@@ -1,0 +1,13 @@
+/* miniprogram/pages/info/appoint-success/appoint-success.wxss */
+.title {
+  margin-bottom: 10rpx;
+  font-weight: 400;
+  font-size: 40rpx
+}
+.desc {
+  font-size: 28rpx;
+  color: rgba(0,0,0,.45)
+}
+.image{
+  width:300px;margin:auto
+}

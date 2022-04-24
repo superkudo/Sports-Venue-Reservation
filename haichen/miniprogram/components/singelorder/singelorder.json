@@ -1,0 +1,15 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wux-cell": "../cell/index",
+    "wux-cell-group":"../cell-group/index",
+    "wux-row": "../row/index",
+        "wux-col": "../col/index",
+        "wux-rater": "../rater/index",
+        "wux-avatar": "../avatar/index",
+        "wux-button": "../button/index",
+        "wux-icon":"../icon/index",
+        "wux-popup":"../popup/index" ,
+        "wux-divider":"../divider/index"
+  }
+}

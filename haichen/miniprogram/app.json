@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/hot/hot",
+    "pages/mine/mine",
+    "pages/mine/edit-info/edit-info",
+    "pages/mine/order/order",
+    "pages/index/admin/admin",
+    "pages/index/edit-place/edit-place",
+    "pages/index/handle-user/handle-user",
+    "pages/index/edit-long/edit-long",
+    "pages/client/appoint-order/appoint-order",
+    "pages/info/appoint-success/appoint-success"
+    
+  ],
+  "window": {
+    "backgroundColor": "#FFFFFF",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffca2a",
+    "navigationBarTitleText": "海晟网球",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "tabBar": {
+    "borderStyle": "black",
+    "color": "#707070",
+    "selectedColor": "#ffca2a",
+    "backgroundColor": "#fff",
+    "position": "bottom",
+    "list": [
+      {
+        "text": "场地预约",
+        "pagePath": "pages/hot/hot",
+        "iconPath": "images/tabs/icon1.png",
+        "selectedIconPath": "images/tabs/icon1.png"
+      },
+      {
+        "text": "个人中心",
+        "pagePath": "pages/mine/mine",
+        "iconPath": "images/tabs/icon2.png",
+        "selectedIconPath": "images/tabs/icon2.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

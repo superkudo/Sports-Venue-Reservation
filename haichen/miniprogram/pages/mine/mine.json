@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "wux-cell": "/components/cell/index",
+    "wux-cell-group":"/components/cell-group/index",
+    "wux-card": "/components/card/index",
+    "wux-button": "/components/button/index",
+    "wux-icon": "/components/icon/index"
+  },
+  "navigationBarTitleText":"我的",
+  "backgroundColor": "#ffca2a"
+}

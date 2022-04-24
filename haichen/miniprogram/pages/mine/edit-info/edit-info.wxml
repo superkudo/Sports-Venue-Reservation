@@ -1,0 +1,44 @@
+<!--pages/index/edit-info/edit-info.wxml-->
+<wux-form class="edit-info" id="wux-form" bind:change="onChange">
+<wux-cell-group title="姓名">
+    <wux-cell hover-class="none"> 
+      <wux-field name="name" initialValue="{{name}}">
+          <wux-input label="" />
+      </wux-field>
+    </wux-cell>
+  </wux-cell-group>
+  <wux-cell-group title="手机号">
+    <wux-cell hover-class="none"> 
+      <wux-field name="phone" initialValue="{{phone}}">
+          <wux-input label="" />
+      </wux-field>
+    </wux-cell>
+  </wux-cell-group>
+  <!-- <view wx:if ="{{role=='admin'}}">
+    
+    <wux-cell-group  title="uid" label="请关注公众号获取uid">
+    <wux-cell hover-class="none"> 
+      <wux-field name="uid" initialValue="{{uid}}">
+          <wux-input label="" placeholder="请正确填写uid"/>
+      </wux-field>
+    </wux-cell>
+  </wux-cell-group>
+  <text class="tips">关注公众号：wxpusher，然后点击「我的」-「我的UID」查询到UID。</text>
+  
+  <wux-button style="width:100%" block catchtap="copy" type="light" data-url="//wxpusher.zjiecode.com/wxuser/?type=2&id=1926#/follow">点击复制链接微信打开订阅消息推送</wux-button>
+</view> -->
+  
+   <wux-cell-group title="水平" label="">
+   
+      <wux-field name="level" initialValue="{{ level }}" >
+          <wux-popup-select options="{{ levels }}" bind:confirm="levelConfirm">
+                <wux-cell  is-link extra="{{level!=''?level:'请选择'}}"></wux-cell>
+            </wux-popup-select>
+      </wux-field>
+    
+  </wux-cell-group>
+    <view class="">
+         <wux-button block type="energized" catchtap="saveInfo">保存</wux-button>
+    </view>
+</wux-form>
+

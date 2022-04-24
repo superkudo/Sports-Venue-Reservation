@@ -1,0 +1,66 @@
+<view class='container'>
+  <wux-spin style="width:100%" nested size="large" tip="操作中" spinning="{{ spinning }}" >
+  <wux-form class="add-place" id="wux-form" bind:change="onChange" style="width:100%">
+  <!-- <wux-cell-group title="拼团人数">
+    <wux-cell hover-class="none"> 
+      <wux-field name="peoplenum" initialValue="{{peoplenum}}">
+          <wux-input-number min="1" value="{{peoplenum}}" disabled="{{ false }}" controlled/>
+      </wux-field> 
+      </wux-cell>
+  </wux-cell-group> -->
+
+<!-- <wux-cell-group title="选择子场地">
+    <wux-cell hover-class="none"> 
+      <wux-popup-select value="{{ children.value }}" options="{{ obj.children }}" data-index="1" bind:confirm="onChildren" >
+                <wux-cell title="" is-link extra="{{ children.value==''?'请选择':children.value }}"></wux-cell>
+            </wux-popup-select>
+    </wux-cell>
+  </wux-cell-group> -->
+
+   <wux-cell-group title="价格">
+    <wux-cell hover-class="none"> 
+     
+          <wux-input label="" value="{{peopleprice+'元'}}" disabled controlled/>
+    
+      </wux-cell>
+  </wux-cell-group>
+  <!-- <view>
+   <view style="font-size:28rpx;color:rgba(0,0,0,0.45);padding:30rpx 30rpx 18rpx">选择时间 ({{mem}}) </view>
+  </view>
+  <view>
+    <view class='cell_view' bindtap='cellClick'>
+      <text class='title_text'>选择时间</text>
+      <text class='subtitle_text'>{{dateStr}}</text>
+    </view>
+    <yycalendar show='{{isShow}}' style="z-index:1000" beginTime="08:00" endTime="22:00" timeGap="60" unreserveTime='{{unArr}}' bind:del="_del" bind:yybindchange="_yybindchange" mem="{{'('+mem+')'}}" timeday="{{day}}"/>
+  </view> -->
+  
+  <wux-cell-group title="联系人">
+    <wux-cell hover-class="none"> 
+      <wux-field name="name" initialValue="{{name}}">
+          <wux-input label="" />
+      </wux-field>
+    </wux-cell>
+  </wux-cell-group>
+  <wux-cell-group title="联系方式">
+    <wux-cell hover-class="none"> 
+      <wux-field name="phone" initialValue="{{phone}}">
+          <wux-input label="" />
+      </wux-field> 
+      </wux-cell>
+  </wux-cell-group>
+   <wux-cell-group title="备注" style="display:{{isShow?'none':'black'}}">
+                <wux-cell hover-class="none">
+                    <wux-field name="comments" initialValue="">
+                        <wux-textarea rows="3" />
+                    </wux-field>
+                </wux-cell>
+            </wux-cell-group>
+
+    <view class="">
+         <wux-button block type="energized" catchtap="addAppoint">{{peoplenum==1?"预约":"确认发起"}}</wux-button>
+    </view>
+</wux-form>
+</wux-spin>
+
+</view>

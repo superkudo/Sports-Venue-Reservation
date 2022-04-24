@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "wux-search-bar": "/components/search-bar/index",
+    "wux-cell": "/components/cell/index",
+    "wux-cell-group":"/components/cell-group/index",
+    "wux-icon": "/components/icon/index",
+    "wux-button": "/components/button/index",
+    "wux-row": "/components/row/index",
+        "wux-col": "/components/col/index",
+        "place":"/components/place/place",
+        "wux-tabs": "/components/tabs/index",
+        "wux-tab": "/components/tab/index",
+        "wux-segmented-control": "/components/segmented-control/index",
+        "wux-rater": "/components/rater/index"
+  }
+}

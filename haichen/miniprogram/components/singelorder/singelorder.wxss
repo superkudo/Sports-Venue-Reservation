@@ -1,0 +1,13 @@
+/* components/singelorder/singelorder.wxss *//* components/place/place.wxss */
+.item{
+  color:#414141;
+  margin-bottom: 10rpx;
+}
+.item-text{
+  /* font-size: 32rpx; */
+  font-size: 28rpx;
+  color:#ababab
+}
+.dao{
+  background:black;color:white;padding:0 2px;border-radius:4px
+}

@@ -1,0 +1,16 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wux-avatar":"../avatar/index",
+    "wux-wing-blank": "../wing-blank/index",
+    "wux-textarea": "../textarea/index",
+    "wux-cell-group": "../cell-group/index",
+        "wux-cell": "../cell/index",
+        "wux-input": "../input/index",
+        "wux-row": "../row/index",
+        "wux-col": "../col/index",
+        "wux-button": "../button/index",
+        "wux-tag":"../tag/index",
+        "wux-white-space": "../white-space/index"
+  }
+}

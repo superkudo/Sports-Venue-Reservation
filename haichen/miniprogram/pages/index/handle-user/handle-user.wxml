@@ -1,0 +1,39 @@
+<!--miniprogram/pages/index/handle-user/handle-user.wxml-->
+<view style="margin-bottom:40px">
+           
+            <wux-cell-group title="基本信息">
+              <wux-cell class="cell"   >
+                
+
+                    <view class="item">
+                        <text class="item-text">姓名： </text>
+                        <text class="item-text">{{user.name}} </text>
+                    </view>
+                     <view class="item">
+                        <text class="item-text">手机号： </text>
+                        <text class="item-text">{{user.phone}} </text>
+                    </view>
+                     <view class="item">
+                        <text class="item-text">水平： </text>
+                        <text class="item-text">{{user.level}} </text>
+                    </view>
+                     <!-- <view class="item">
+                        <text class="item-text">级别： </text>
+                        <text class="item-text">{{users[currentPlace._id][0].member[currentPlace._id]?users[currentPlace._id][0].member[currentPlace._id]:'非会员'}} </text>
+                    </view> -->
+
+                    
+              </wux-cell>
+            </wux-cell-group>
+            <wux-cell-group title="操作">
+              <wux-cell class="cell"   >
+
+                    <view style="margin-left:-30rpx;height:44px">
+                     
+                          <wux-cell title="设置会员:" is-link extra="" url="{{'../edit-long/edit-long?userid='+users[currentPlace._id][0]._id+'&placeid='+currentPlace._id+'&places='+placesUrl}}"></wux-cell>
+                      　 
+                      　
+                    </view>
+              </wux-cell>
+            </wux-cell-group>
+        </view>

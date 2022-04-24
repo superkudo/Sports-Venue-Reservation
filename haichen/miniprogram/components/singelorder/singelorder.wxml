@@ -1,0 +1,88 @@
+
+<wux-cell-group style="display:{{obj.show}};{{page!='hot'?'width:93%;margin:5px 4%':''}}" class="sing" title="">
+            <!-- <wux-cell class="cell" wx:for="{{places}}" wx:for-item="item" wx:key="index" data-exid="{{item._id}}" data-img="{{item.place_img_src}}" data-price="{{item.place_price}}" data-times="{{item.place_times==undefined?[]:item.place_times}}" catchtap="appoint" title="" extra="预约"> -->
+            
+            <template name="d">
+              <text wx:if="{{days!=''}}" class="dao">{{days}}</text><text wx:if="{{days!=''}}"> 天 </text><text class="dao">{{ hours }}</text> : <text class="dao">{{min }}</text> : <text class="dao">{{ sec}}</text>
+            </template>
+            <!-- <view><template is="d" data="{{...dao}}"/>{{dao.min}}</view> -->
+            <wux-popup position="bottom" visible="{{ visible }}" bind:close="close">
+              <wux-cell-group title="分享">
+                  <wux-cell hover-class="none">
+                      <wux-button block type="positive" catchtap="close" open-type="share">发送</wux-button>
+                  </wux-cell>
+              </wux-cell-group>
+          </wux-popup>
+            <wux-cell class="cell"  title="" >
+              <wux-row wx:if="{{isShow&&(page=='hot')}}">
+                <wux-col span="12">
+                  <view style="float:right;color:red;padding-bottom:5px" >{{obj.users.length==obj.peoplenum?"已成团":(page=='reserved'?"距离活动开始 ":page=='complete'?"已结束":"")}}<template is="d" data="{{...dao}}"/>  <wux-icon wx:if="{{page=='reserved'}}" type="md-share-alt" catchtap="open" size="24"/></view>
+                </wux-col>
+              </wux-row>
+              <wux-row>
+                <wux-col span="4">
+                  <view style="transform: translate(0, 10%);border-radius:6px;">
+                  <image src="{{obj.obj.place_img_src==''?'../../images/icons/changdi.png':obj.obj.place_img_src}}" mode="widthFix" style="width:80%;max-height:90px;border-radius:6px" lazy-load="true"></image>
+                  </view>
+                   
+                </wux-col>
+                <wux-col span="8">
+                <view class="item">
+                        
+                        <text style="font-size:36rpx;font-weight:bold">{{obj.obj.place_name}}</text>
+                        
+                    </view>
+                    <view class="item">
+                        <text class="item-text">地点： </text>
+                        <text class="item-text">{{obj.obj.place_area}}</text>
+                    </view>
+                    <view class="item">
+                        <text class="item-text">参考价： ¥</text>
+                        <text class="item-text" style="color:#5ac0ce;">{{obj.peopleprice}}</text>
+                        <text class="item-text"> /人</text>
+                    </view>
+                    <view class="item">
+                        <text class="item-text">时间： </text>
+                        <text class="item-text">{{dateStr+start_date+'~'+end_date}}</text>
+                       
+                    </view>
+                    <view wx:if="{{!isShow}}" class="item">
+                        <text class="item-text">详细地点： </text>
+                        <text class="item-text">{{obj.children.value}}</text>
+                       
+                    </view>
+                </wux-col>
+              </wux-row>
+              <wux-divider dashed show-text="{{ false }}"/>
+              <wux-row >
+                <wux-col span="9">
+                  <text class="item-text" style="line-height:50px;margin-left:5%">拼团： </text>
+                  
+
+                  <wux-avatar size="{{item.id==user.id?'large':'default'}}" src="{{item.avatarUrl==undefined?'../../images/icons/morentouxiang.png':item.avatarUrl}}" wx:for="{{obj.users}}" wx:for-item="item" wx:key="index" data-item="{{item}}" ></wux-avatar>
+                  <!-- <wux-avatar size="large" ></wux-avatar> -->
+                  <text class="item-text" style="margin-left:5%">{{obj.users.length+'/'+obj.peoplenum}}</text>
+                </wux-col>
+                <wux-col span="3" wx:if="{{isShow}}">
+                  <view wx:if="{{page=='evaluated'}}"><wux-button block type="energized" data-item="{{obj.obj}}" catchtap="appoint" size="small">待评价</wux-button></view>
+                  <view wx:if="{{page=='reserved'||page=='complete'||page=='order'||page=='admin'}}"><wux-button wx:if="{{page=='reserved'}}" block type="energized" data-item="{{obj}}" catchtap="delAppoint" size="small" style="display:none" >撤销</wux-button><wux-button block type="energized" data-item="{{obj}}" catchtap="orderdetail" size="small">订单详情</wux-button></view>
+                  <!-- <view wx:for="{{obj.users}}" wx:for-item="item" wx:key="index" data-item="{{item}}" wx:if="{{item.id!=user.id}}"> -->
+                    <wux-button block type="energized" data-item="{{obj.obj}}" catchtap="appoint" wx:if="{{obj.users.length<obj.peoplenum&&page=='hot'}}" size="small">立即参团</wux-button>
+                    
+                  <!-- </view> -->
+                </wux-col>
+              </wux-row>
+              <!-- <wux-row wx:if="{{page=='reserved'&&obj.merge==true}}">
+               <wux-col span="12">
+                <view style="color:red;">您正在预约的场地已被他人抢先预约，请联系场地管理员协调</view>
+               </wux-col>
+              </wux-row> -->
+              <wux-row wx:if="{{page=='reserved'&&obj.users.length<obj.peoplenum}}">
+               <wux-col span="12" wx:if="{{currentDate>obj.hour}}">
+                <view style="color:red;">拼团时间已过，预约已作废。</view>
+               </wux-col>
+              </wux-row>
+                
+            </wux-cell>
+        
+        </wux-cell-group>

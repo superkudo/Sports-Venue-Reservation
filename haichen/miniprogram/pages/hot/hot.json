@@ -1,0 +1,16 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "place":"/components/place/place",
+    "order": "/components/order/order",
+    "calendarMonth": "/components/calendarWeek/calendarWeek",
+    "wux-row": "/components/row/index",
+        "wux-col": "/components/col/index",
+        "wux-popup": "/components/popup/index",
+        "wux-button": "/components/button/index",
+    "nav-bar": "/components/navbar/navbar",
+    "wux-toast": "/components/toast/index",
+    "wux-spin": "/components/spin/index" 
+  },
+  "backgroundColor": "#ffca2a"
+}

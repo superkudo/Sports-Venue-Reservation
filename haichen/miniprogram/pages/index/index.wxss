@@ -1,0 +1,9 @@
+/* miniprogram/pages/index/index.wxss */
+.index{
+  width: 60%;
+  padding: 200rpx 0;
+  margin:auto;
+}
+.index .but{
+  padding: 50rpx 0;
+}

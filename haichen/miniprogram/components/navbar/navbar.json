@@ -1,0 +1,15 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wux-row": "../row/index",
+        "wux-col": "../col/index",
+        "wux-icon": "../icon/index",
+        "wux-button":"../button/index",
+        "wux-dialog": "../dialog/index",
+        "wux-cell-group": "../cell-group/index",
+        "wux-cell": "../cell/index",
+        "wux-radio-group": "../radio-group/index",
+        "wux-radio": "../radio/index",
+        "wux-popup": "../popup/index"
+  }
+}
